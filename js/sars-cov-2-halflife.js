@@ -64,7 +64,7 @@ var sc2hl = function(){
         }
     }
     
-    var function logWithBase(x, base) {
+    var logWithBase = function(x, base) {
         return Math.log(x) / Math.log(base);
     } 
     
