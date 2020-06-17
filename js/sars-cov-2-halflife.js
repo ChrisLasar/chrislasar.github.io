@@ -23,7 +23,7 @@ var half_life_params = {
     convert_to_time_numerator: -0.693
   };
 
-  function update_covid_half_life(temp, rh, uv_index) {
+  var update_covid_half_life = function (temp, rh, uv_index) {
     var params = half_life_params;
 
     var solar = (uv_index + params["solar_const"]) / params["solar_scaler"];
