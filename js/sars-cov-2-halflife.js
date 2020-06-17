@@ -23,26 +23,8 @@ var half_life_params = {
     convert_to_time_numerator: -0.693
   };
 
-  function init() {
-    // set defaults
-    temp_f_slider.onInputHasBeenCalled = true;
-    temp_f_value.value = temp_f_slider.value;
-    update_c();
-    
-    relative_humidity_value.value = relative_humidity_slider.value;
-    uv_index_value.value = uv_index_slider.value;
-    update_covid_half_life();
-  }
-
-  function update_c() {
-    temp_c_value.innerHTML = ((temp_f_slider.value - 32) * 5/9).toFixed(1);
-  }
-
-  function update_covid_half_life() {
+  function update_covid_half_life(temp, rh, uv_index) {
     var params = half_life_params;
-    var temp = (temp_f_slider.value - 32) * 5/9;
-    var rh = parseFloat(relative_humidity_value.value);
-    var uv_index = parseFloat(uv_index_value.value);
 
     var solar = (uv_index + params["solar_const"]) / params["solar_scaler"];
 
@@ -64,16 +46,21 @@ var half_life_params = {
     var half_life = params["convert_to_time_numerator"]/k_min_denom;
 
     covid_half_life_minutes.innerHTML = half_life.toFixed(2);
-    covid_half_life_hours.innerHTML = (half_life/60).toFixed(2);
+    // covid_half_life_hours.innerHTML = (half_life/60).toFixed(2);
 
     covid_90 = (half_life * logWithBase((1- .90), .5));
-    covid_90_minutes.innerHTML = covid_90.toFixed(2);
-    covid_90_hours.innerHTML = (covid_90/60).toFixed(2);
+    // covid_90_minutes.innerHTML = covid_90.toFixed(2);
+    // covid_90_hours.innerHTML = (covid_90/60).toFixed(2);
 
     covid_99 = (half_life * logWithBase((1- .99), .5));
-    covid_99_minutes.innerHTML = covid_99.toFixed(2);
-    covid_99_hours.innerHTML = (covid_99/60).toFixed(2);
+    // covid_99_minutes.innerHTML = covid_99.toFixed(2);
+    // covid_99_hours.innerHTML = (covid_99/60).toFixed(2);
 
+    return {
+        covid_50: half_life,
+        covid_90: covid_90,
+        covid_99: covid_99
+    }
   }
 
   function logWithBase(x, base) {
