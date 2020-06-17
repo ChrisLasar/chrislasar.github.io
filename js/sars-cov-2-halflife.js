@@ -46,16 +46,10 @@ var sc2hl = function(){
         
         var half_life = params["convert_to_time_numerator"]/k_min_denom;
         
-        covid_half_life_minutes.innerHTML = half_life.toFixed(2);
-        // covid_half_life_hours.innerHTML = (half_life/60).toFixed(2);
         
         covid_90 = (half_life * logWithBase((1- .90), .5));
-        // covid_90_minutes.innerHTML = covid_90.toFixed(2);
-        // covid_90_hours.innerHTML = (covid_90/60).toFixed(2);
         
         covid_99 = (half_life * logWithBase((1- .99), .5));
-        // covid_99_minutes.innerHTML = covid_99.toFixed(2);
-        // covid_99_hours.innerHTML = (covid_99/60).toFixed(2);
         
         return {
             "covid_50": half_life,
