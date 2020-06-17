@@ -57,9 +57,9 @@ var half_life_params = {
     // covid_99_hours.innerHTML = (covid_99/60).toFixed(2);
 
     return {
-        covid_50: half_life,
-        covid_90: covid_90,
-        covid_99: covid_99
+        "covid_50": half_life,
+        "covid_90": covid_90,
+        "covid_99": covid_99
     }
   }
 
